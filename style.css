@@ -1,0 +1,132 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Arial", sans-serif;
+}
+
+body {
+    background: linear-gradient(120deg, #4e54c8, #8f94fb);
+    background-size: 300% 300%;
+    animation: gradient 10s infinite ease-in-out;
+    color: #fff;
+}
+
+@keyframes gradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+header {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.title {
+    font-size: 48px;
+    animation: fadeIn 2s ease forwards;
+    opacity: 0;
+}
+
+.subtitle {
+    font-size: 20px;
+    margin-top: 10px;
+    opacity: 0;
+    animation: fadeIn 3s ease forwards;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; transform: translateY(0); }
+    from { opacity: 0; transform: translateY(20px); }
+}
+
+section {
+    padding: 60px 20px;
+    text-align: center;
+}
+
+h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+/* Галерея */
+.gallery .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    transition: transform 0.4s ease;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Соцмережі */
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border-radius: 30px;
+    background: rgba(255, 255, 255, 0.2);
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    backdrop-filter: blur(5px);
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background: rgba(255, 255, 255, 0.4);
+    transform: translateY(-3px);
+}
+
+/* Гра */
+.game canvas {
+    margin-top: 20px;
+    border: 3px solid white;
+    border-radius: 8px;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    opacity: 0.7;
+    font-size: 14px;
+}
+ 
+/* Галерея */
+.gallery .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+}
+
+/* Однаковий розмір фото */
+.gallery img {
+    width: 100%;
+    height: 260px;     /* 🔥 Ідеальний розмір — можеш змінювати */
+    object-fit: cover; /* Фото обрізається красиво, без розтягування */
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Ефект наведення */
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+}
+

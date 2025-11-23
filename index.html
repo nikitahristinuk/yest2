@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Про мене</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1 class="title">Привіт! Я – Христинюк Нікіта</h1>
+        <p class="subtitle">Творча особистість • Програміст • Активний в житті 🙂</p>
+    </header>
+
+    <section class="about">
+        <h2>Про мене</h2>
+        <p>
+           Привіт! Мене звати Нікіта, мені 14 років. Я активно займаюсь спортом, веду здоровий спосіб життя та люблю розвиватися. Добре знаю англійську мову, що допомагає мені спілкуватися, вчитися та відкривати для себе нові можливості. Я навчаюся в школі, люблю проводити час з друзями та часто ходжу гуляти. Для мене важливо поєднувати навчання, хобі та активний відпочинок, тому я завжди намагаюся бути енергійним і позитивним.
+        </p>
+    </section>
+
+    <section class="gallery">
+        <h2>Моя галерея</h2>
+        <div class="grid">
+            <img src="photo1.jpg" alt="На скутері">
+            <img src="photo2.jpg" alt="Тоже на скутері">
+            <img src="photo3.jpg" alt="Мукачево">
+            <img src="photo4.jpg" alt="Тоже Мукачево">
+            <img src="photo5.jpg" alt="З друзями на горі">
+        </div>
+    </section>
+
+    <section class="social">
+        <h2>Мої соцмережі</h2>
+        <div class="links">
+            <a href=" https://www.instagram.com/its.nikki_tos?igsh=MTNpMjV3cHRid2FvZw==&utm_source=ig_contact_invite" class="btn instagram">Instagram</a>
+        </div>
+    </section>
+
+    <section class="game">
+        <h2>🎮 Міні-гра: Змійка</h2>
+        <p>Пограй у змейку прямо тут!</p>
+        <canvas id="snake" width="400" height="400"></canvas>
+    </section>
+
+    <footer>
+        © 2025 Твоє ім’я. Всі права захищені.
+    </footer>
+<script> 
+    const canvas = document.getElementById("snake");
+const ctx = canvas.getContext("2d");
+
+let box = 20;
+let snake = [{x: 9 * box, y: 9 * box}];
+let food = {
+    x: Math.floor(Math.random() * 20) * box,
+    y: Math.floor(Math.random() * 20) * box
+};
+
+let dir;
+document.addEventListener("keydown", direction);
+
+function direction(event) {
+    if(event.key === "a" && dir !== "RIGHT") dir = "LEFT";
+    else if(event.key === "w" && dir !== "DOWN") dir = "UP";
+    else if(event.key === "d" && dir !== "LEFT") dir = "RIGHT";
+    else if(event.key === "s" && dir !== "UP") dir = "DOWN";
+}
+
+function drawGame() {
+    ctx.fillStyle = "#1d1d1d";
+    ctx.fillRect(0, 0, 400, 400);
+
+    for(let i = 0; i < snake.length; i++) {
+        ctx.fillStyle = (i === 0) ? "#4e54c8" : "#8f94fb";
+        ctx.fillRect(snake[i].x, snake[i].y, box, box);
+    }
+
+    ctx.fillStyle = "red";
+    ctx.fillRect(food.x, food.y, box, box);
+
+    let snakex = snake[0].x;
+    let snakey = snake[0].y;
+
+    if(dir === "LEFT") snakex -= box;
+    if(dir === "RIGHT") snakex += box;
+    if(dir === "UP") snakey -= box;
+    if(dir === "DOWN") snakey += box;
+
+    if(snakex === food.x && snakey === food.y) {
+        food = {
+            x: Math.floor(Math.random() * 20) * box,
+            y: Math.floor(Math.random() * 20) * box
+        };
+    } else {
+        snake.pop();
+    }
+
+    let newHead = {x: snakex, y: snakey};
+
+    if (
+        snakex < 0 || snakex >= 400 ||
+        snakey < 0 || snakey >= 400 ||
+        collision(newHead, snake)
+    ) {
+        clearInterval(game);
+    }
+
+    snake.unshift(newHead);
+}
+
+function collision(head, array) {
+    return array.some(segment => segment.x === head.x && segment.y === head.y);
+}
+
+let game = setInterval(drawGame, 120);
+
+</script>
+</body>
+</html>
